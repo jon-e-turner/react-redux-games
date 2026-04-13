@@ -15,6 +15,7 @@ export type TetrisGameState = {
   isRunning: boolean;
   level: number;
   nextShape: number;
+  pieceStats: number[];
   rotation: number;
   score: number;
   shape: number;
@@ -57,6 +58,7 @@ const tetrisSlice = createSlice({
           const newScore = score + checkRows(newGrid);
 
           state.shape = nextShape;
+          state.pieceStats[nextShape - 1]++;
           state.nextShape = newNextShape;
           state.score = newScore;
           state.x = 4;
@@ -115,20 +117,17 @@ const tetrisSlice = createSlice({
       state.isRunning = false;
       state.gameOver = true;
     },
-    // gameRestarted: (state) => {
-    //   return {
-    //     ...state,
-    //     ...initialState,
-    //     isRunning: true,
-    //   };
-    // },
   },
   extraReducers: (builder) => {
     builder.addCase(gameSaved, (state) => {
+      const newState = defaultState().tetris;
+      const startingStats = newState.pieceStats.slice();
+      startingStats[newState.shape - 1]++;
       return {
         ...state,
-        ...initialState,
+        ...newState,
         isRunning: true,
+        pieceStats: startingStats,
       };
     });
   },
@@ -142,7 +141,6 @@ export const {
   rotatedLeft,
   paused,
   gameEnded,
-  // gameRestarted,
 } = tetrisSlice.actions;
 
 export default tetrisSlice.reducer;

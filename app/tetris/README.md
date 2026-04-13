@@ -5,6 +5,7 @@ Initially, this came from <https://makeschool.org/mediabook/oa/tutorials/react-r
 ## In-progress
 
 - Check high scores and update
+- Add historical stats
 
 ## My Changes
 
@@ -27,6 +28,7 @@ Initially, this came from <https://makeschool.org/mediabook/oa/tutorials/react-r
 - Added view for high scores
 - Moved preview to right side (guideline)
 - Implemented standard "35-bag" piece randomizer
+- Added statistics for piece frequency for current game
 
 ## To-do
 
@@ -43,7 +45,6 @@ Initially, this came from <https://makeschool.org/mediabook/oa/tutorials/react-r
 - Look into implementing the "recommended guidelines"
   - Field should be 10 x 20
   - Have hidden 20 row buffer above playing field
-  - Fix piece picking to use 7-bag
   - Show part of the 21st row
   - Player can hold a single piece for later
   - Piece locking with 15-move reset timer
@@ -56,9 +57,6 @@ Initially, this came from <https://makeschool.org/mediabook/oa/tutorials/react-r
 - Save high scores
 - Update main page button to show if a game is in progress
 - Implement UI changes to mimic NES game
-- Add statistics about shape drop rates
-  - Current game
-  - Historically
 - Break up CSS and learn about Tailwind
 - Implement themes
 - Encapsulate/isolate the Tetris clone

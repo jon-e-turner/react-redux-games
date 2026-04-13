@@ -1,13 +1,14 @@
-import { useSelector } from 'react-redux';
 import { useIsClient } from '~/hooks/useIsClient';
 import TetrisBlock from '~/tetris/components/tetris-block';
 import { shapes } from '~/utils';
-import type { AppState } from '~/store';
+import TetrisBlockStats from './tetris-block-stats';
+import { useAppSelector } from '~/hooks/useAppHooks';
 
 export default function TetrisNextBlock() {
   const isClient = useIsClient();
-  const nextShape = useSelector((state: AppState) => state.tetris.nextShape);
+  const { nextShape, pieceStats } = useAppSelector((state) => state.tetris);
 
+  // Stop SSR since the input is random.
   if (!isClient) return null;
 
   const box = shapes[nextShape][0];
@@ -17,7 +18,6 @@ export default function TetrisNextBlock() {
       return (
         <TetrisBlock
           key={`${row}${col}`}
-          // replace the blank squares with an invisible box
           color={square === 0 ? 0 : nextShape}
         />
       );
@@ -28,6 +28,9 @@ export default function TetrisNextBlock() {
     <div>
       <div className="next-label">Next:</div>
       <div className="next-block">{grid}</div>
+      <div>
+        <TetrisBlockStats stats={pieceStats} />
+      </div>
     </div>
   );
 }

@@ -108,6 +108,7 @@ export const defaultState = (): AppState => {
       isRunning: false,
       level: 1,
       nextShape: pieceBag.nextShape(),
+      pieceStats: [0, 0, 0, 0, 0, 0, 0],
       rotation: 0,
       score: 0,
       shape: pieceBag.nextShape(),

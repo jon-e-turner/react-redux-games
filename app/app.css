@@ -62,11 +62,11 @@ button {
 }
 
 .app {
-  --col-side: calc(var(--tile-size) * 4);
+  --col-side: calc(var(--tile-size) * 6);
   --col-center: calc(var(--tile-size) * 10);
   --grid-height: calc(var(--tile-size) * 18);
 
-  width: calc(var(--tile-size) * (4 + 1 + 10 + 1 + 4));
+  width: calc(var(--tile-size) * (6 + 1 + 10 + 1 + 6));
   margin: auto;
   display: grid;
 
@@ -211,6 +211,27 @@ button {
   background-color: var(--color-7);
 }
 
+.piece-stats {
+  display: flex;
+  flex-direction: column;
+  border-color: var(--color-7);
+  border-width: 2px;
+}
+
+.stat-bar {
+  height: 5px;
+  width: calc(4 * var(--tile-size));
+}
+
+.small-block {
+  --tile-size: 5px;
+  --border-width: 1;
+
+  display: grid;
+  grid-template-columns: repeat(4, var(--tile-size));
+  align-self: center;
+}
+
 .tetris-block {
   border-style: solid;
   width: var(--tile-size);
@@ -271,7 +292,7 @@ button {
   border-radius: 1em;
   width: 90%;
   height: fit-content;
-  align-self: anchor-center;
+  align-self: center;
   justify-content: space-evenly;
   font-size: 24px;
   padding: 0.5em;
@@ -335,7 +356,7 @@ button {
   display: flex;
   flex-direction: row;
   width: 90%;
-  align-self: anchor-center;
+  align-self: center;
   font-size: 24px;
 }
 
