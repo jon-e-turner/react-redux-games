@@ -1,19 +1,18 @@
-// import { shapes } from '~/utils';
-
 export class RandomBag {
   #bag: number[] = [];
   #refillBag: () => number[];
   static #instance: RandomBag;
+  static #NUM_SHAPES = 7;
 
-  private constructor(shapes: number[], copies: number) {
-    this.#refillBag = () => this.randomizeBag(this.fillBag(shapes, copies));
+  private constructor(copies: number) {
+    this.#refillBag = () => this.randomizeBag(this.fillBag(copies));
     this.#bag = this.#refillBag();
   }
 
-  private fillBag(shapes: number[], copies: number) {
+  private fillBag(copies: number) {
     return Array.from(
-      { length: copies * shapes.length },
-      (_, idx) => idx % shapes.length,
+      { length: copies * RandomBag.#NUM_SHAPES },
+      (_, idx) => (idx % RandomBag.#NUM_SHAPES) + 1,
     );
   }
 
@@ -32,28 +31,20 @@ export class RandomBag {
   public static getInstance(): RandomBag {
     if (!RandomBag.#instance) {
       // Set up a standard '35-bag'
-      RandomBag.createInstance(
-        // [BUG] Something with Vite is causing this to fail with `shapes` being undefined
-        // Array.from({ length: shapes.length - 1 }, (_, idx) => idx + 1),
-        Array.from({ length: 7 }, (_, idx) => idx + 1),
-        5,
-      );
-      // throw new Error(
-      //   `Game's bag not initialized.\n  Call RandomBag.createInstance(shapes: number[], copies: number) first.`,
-      // );
+      RandomBag.createInstance(5);
     }
 
     return this.#instance;
   }
 
-  public static createInstance(shapes: number[], copies: number) {
+  public static createInstance(copies: number) {
     if (RandomBag.#instance) {
       console.warn(
         `Game bag already exists. \nCall getInstance() to retrieve it.`,
       );
     }
 
-    this.#instance = new RandomBag(shapes, copies);
+    this.#instance = new RandomBag(copies);
   }
 
   /**

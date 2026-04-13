@@ -5,7 +5,6 @@ Initially, this came from <https://makeschool.org/mediabook/oa/tutorials/react-r
 ## In-progress
 
 - Check high scores and update
-- Implement 7-bag piece selector
 
 ## My Changes
 
@@ -27,6 +26,7 @@ Initially, this came from <https://makeschool.org/mediabook/oa/tutorials/react-r
 - Added view for player's past games
 - Added view for high scores
 - Moved preview to right side (guideline)
+- Implemented standard "35-bag" piece randomizer
 
 ## To-do
 
