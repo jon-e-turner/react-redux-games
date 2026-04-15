@@ -4,6 +4,7 @@ import TetrisGrid from '~/tetris/components/tetris-grid';
 import TetrisNextBlock from '~/tetris/components/tetris-next-block';
 import TetrisScoreBoard from '~/tetris/components/tetris-score-board';
 import TopNavigation from '~/components/top-navigation';
+import '~/tetris/tetris.css';
 
 export default function Tetris() {
   return (

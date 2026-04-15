@@ -1,5 +1,4 @@
 import { isRouteErrorResponse, Links, Meta, Outlet, Scripts, ScrollRestoration, useLoaderData } from 'react-router';
-
 import type { Route } from './+types/root';
 import '~/app.css';
 import { Provider } from 'react-redux';

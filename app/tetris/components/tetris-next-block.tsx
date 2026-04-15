@@ -25,12 +25,10 @@ export default function TetrisNextBlock() {
   });
 
   return (
-    <div>
+    <div className="right-column">
       <div className="next-label">Next:</div>
       <div className="next-block">{grid}</div>
-      <div>
-        <TetrisBlockStats stats={pieceStats} />
-      </div>
+      <TetrisBlockStats stats={pieceStats} />
     </div>
   );
 }
