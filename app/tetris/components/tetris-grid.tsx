@@ -1,17 +1,16 @@
 import { useCallback, useEffect, useRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { movedDown } from '~/tetris/tetrisSlice';
 import { shapes } from '~/utils';
 import TetrisBlock from '~/tetris/components/tetris-block';
-import type { AppState } from '~/store';
+import { useAppDispatch, useAppSelector } from '~/hooks/useAppHooks';
 
 export default function TetrisGrid() {
   const requestRef = useRef(0);
   const lastUpdateTimeRef = useRef(0);
   const progressTimeRef = useRef(0);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
-  const { grid, shape, rotation, x, y, isRunning, speed } = useSelector((state: AppState) => state.tetris);
+  const { grid, shape, rotation, x, y, isRunning, speed } = useAppSelector((state) => state.tetris);
 
   const block = shapes[shape][rotation];
   const blockColor = shape;

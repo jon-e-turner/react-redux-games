@@ -1,11 +1,10 @@
 import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import type { AppState } from '~/store';
+import { useAppDispatch, useAppSelector } from '~/hooks/useAppHooks';
 import { movedDown, movedLeft, movedRight, rotated } from '~/tetris/tetrisSlice';
 
 export default function TetrisControls() {
-  const dispatch = useDispatch();
-  const { isRunning, gameOver } = useSelector((state: AppState) => state.tetris);
+  const dispatch = useAppDispatch();
+  const { isRunning, gameOver } = useAppSelector((state) => state.tetris);
 
   const shouldDispatch = isRunning && !gameOver;
 

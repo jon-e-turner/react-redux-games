@@ -1,11 +1,10 @@
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
 import { paused } from '~/tetris/tetrisSlice';
 import { gameSaved } from '~/tetris/tetrisHistorySlice';
-import { useAppSelector } from '~/hooks/useAppHooks';
+import { useAppDispatch, useAppSelector } from '~/hooks/useAppHooks';
 
 export default function TetrisScoreBoard() {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const { score, isRunning, level, gameOver, grid } = useAppSelector((state) => state.tetris);
 
   const saveAndRestart = () => {
