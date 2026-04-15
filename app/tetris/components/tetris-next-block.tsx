@@ -17,7 +17,6 @@ export default function TetrisNextBlock() {
     return rowArray.map((square, col) => {
       return (
         <TetrisBlock
-          // eslint-disable-next-line @eslint-react/no-array-index-key
           key={`${row}${col}`}
           color={square === 0 ? 0 : nextShape}
         />

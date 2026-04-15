@@ -24,6 +24,15 @@ export default defineConfig([
     rules: {
       'no-empty-pattern': 'off',
       '@eslint-react/no-array-index-key': 'off',
+      'no-restricted-imports': 'off',
+      '@typescript-eslint/no-restricted-imports': [
+        'warn',
+        {
+          name: 'react-redux',
+          importNames: ['useSelector', 'useDispatch'],
+          message: 'Use typed hooks `useAppDispatch` and `useAppSelector` instead.',
+        },
+      ],
     },
   },
   tseslint.configs.recommended,

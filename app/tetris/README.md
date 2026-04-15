@@ -44,7 +44,7 @@ Initially, this came from <https://makeschool.org/mediabook/oa/tutorials/react-r
   - Implement Nintendo system with line drop bonus
 - Look into implementing the "recommended guidelines"
   - Field should be 10 x 20
-  - Have hidden 20 row buffer above playing field
+  - Have hidden row buffer above playing field
   - Show part of the 21st row
   - Player can hold a single piece for later
   - Piece locking with 15-move reset timer
