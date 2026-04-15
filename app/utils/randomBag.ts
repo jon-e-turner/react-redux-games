@@ -10,22 +10,17 @@ export class RandomBag {
   }
 
   private fillBag(copies: number) {
-    return Array.from(
-      { length: copies * RandomBag.#NUM_SHAPES },
-      (_, idx) => (idx % RandomBag.#NUM_SHAPES) + 1,
-    );
+    return Array.from({ length: copies * RandomBag.#NUM_SHAPES }, (_, idx) => (idx % RandomBag.#NUM_SHAPES) + 1);
   }
 
   // Using Durstenfeld's algorithm for unbiased randomization
   private randomizeBag(bag: number[]) {
-    const newBag = bag.slice();
-
-    for (let i = newBag.length - 1; i > 0; i--) {
+    for (let i = bag.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
-      [newBag[i], newBag[j]] = [newBag[j], newBag[i]];
+      [bag[i], bag[j]] = [bag[j], bag[i]];
     }
 
-    return newBag;
+    return bag;
   }
 
   public static getInstance(): RandomBag {
@@ -39,12 +34,17 @@ export class RandomBag {
 
   public static createInstance(copies: number) {
     if (RandomBag.#instance) {
-      console.warn(
-        `Game bag already exists. \nCall getInstance() to retrieve it.`,
-      );
+      console.warn(`Game bag already exists. \nCall getInstance() to retrieve it.`);
     }
 
     this.#instance = new RandomBag(copies);
+  }
+
+  public resetInstance() {
+    if (RandomBag.#instance) {
+      this.#bag = [];
+      this.#refillBag();
+    }
   }
 
   /**

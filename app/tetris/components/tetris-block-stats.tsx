@@ -1,12 +1,9 @@
+import React from 'react';
 import { shapes } from '~/utils';
 import TetrisBlock from './tetris-block';
 
 const emptyStats = [0, 0, 0, 0, 0, 0, 0];
-export default function TetrisBlockStats({
-  stats = emptyStats,
-}: {
-  stats: number[];
-}) {
+export default function TetrisBlockStats({ stats = emptyStats }: { stats: number[] }) {
   const highestCount = stats.slice().sort((a, b) => b - a)[0];
 
   return (
@@ -18,6 +15,7 @@ export default function TetrisBlockStats({
           return rowArray.map((square, col) => {
             return (
               <TetrisBlock
+                // eslint-disable-next-line @eslint-react/no-array-index-key
                 key={`${row}${col}`}
                 color={square === 0 ? 0 : shape}
               />
@@ -26,11 +24,14 @@ export default function TetrisBlockStats({
         });
 
         return (
-          <div key={`small-${shape}`} className="flex flex-row">
+          <div
+            key={`small-${shape}`}
+            className="flex flex-row"
+          >
             <div className="small-block ps-1">{grid}</div>
             <div className="piece-hist">
               <progress
-                className="stat-bar pe-1 ps-1 self-center"
+                className="stat-bar self-center ps-1 pe-1"
                 value={count}
                 max={highestCount + 1}
               />

@@ -1,19 +1,11 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import type { AppState } from '~/store';
-import {
-  movedDown,
-  movedLeft,
-  movedRight,
-  rotatedLeft,
-  rotatedRight,
-} from '~/tetris/tetrisSlice';
+import { movedDown, movedLeft, movedRight, rotated } from '~/tetris/tetrisSlice';
 
 export default function TetrisControls() {
   const dispatch = useDispatch();
-  const { isRunning, gameOver } = useSelector(
-    (state: AppState) => state.tetris,
-  );
+  const { isRunning, gameOver } = useSelector((state: AppState) => state.tetris);
 
   const shouldDispatch = isRunning && !gameOver;
 
@@ -30,7 +22,7 @@ export default function TetrisControls() {
       case 'ArrowUp':
       case 'w':
       case 'W':
-        e.shiftKey ? dispatch(rotatedLeft()) : dispatch(rotatedRight());
+        dispatch(rotated(e.shiftKey));
         break;
       case 'ArrowLeft':
       case 'a':
@@ -97,7 +89,7 @@ export default function TetrisControls() {
         disabled={!shouldDispatch}
         onClick={() => {
           if (shouldDispatch) {
-            dispatch(rotatedLeft());
+            dispatch(rotated(true));
           }
         }}
       >
@@ -112,7 +104,7 @@ export default function TetrisControls() {
         disabled={!shouldDispatch}
         onClick={() => {
           if (shouldDispatch) {
-            dispatch(rotatedRight());
+            dispatch(rotated(false));
           }
         }}
       >

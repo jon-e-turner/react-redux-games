@@ -1,8 +1,4 @@
-import {
-  createSelector,
-  createSlice,
-  type PayloadAction,
-} from '@reduxjs/toolkit';
+import { createSelector, createSlice, type PayloadAction } from '@reduxjs/toolkit';
 import { movedDown } from './tetrisSlice';
 import type { AppState } from '~/store';
 
@@ -61,26 +57,17 @@ const tetrisHistorySlice = createSlice({
   },
 });
 
-const selectGameHistoryByPlayer = (state: AppState, player: string) =>
-  state.tetrisHistory.gameHistory[player];
+const selectGameHistoryByPlayer = (state: AppState, player: string) => state.tetrisHistory.gameHistory[player];
 
 const selectHighScores = (state: AppState) => state.tetrisHistory.highScores;
 
-export const selectOrderedGameHistoryByPlayer = createSelector(
-  [selectGameHistoryByPlayer],
-  (gameHistory) => {
-    return gameHistory
-      .slice()
-      .sort((a, b) => b.timestamp.localeCompare(a.timestamp));
-  },
-);
+export const selectOrderedGameHistoryByPlayer = createSelector([selectGameHistoryByPlayer], (gameHistory) => {
+  return gameHistory.slice().sort((a, b) => b.timestamp.localeCompare(a.timestamp));
+});
 
-export const selectOrderedHighScores = createSelector(
-  [selectHighScores],
-  (scores) => {
-    return scores.slice().sort((a, b) => a.score - b.score);
-  },
-);
+export const selectOrderedHighScores = createSelector([selectHighScores], (scores) => {
+  return scores.slice().sort((a, b) => a.score - b.score);
+});
 
 export const { gameSaved } = tetrisHistorySlice.actions;
 

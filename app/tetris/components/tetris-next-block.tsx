@@ -1,15 +1,15 @@
-import { useIsClient } from '~/hooks/useIsClient';
+import React from 'react';
 import TetrisBlock from '~/tetris/components/tetris-block';
 import { shapes } from '~/utils';
 import TetrisBlockStats from './tetris-block-stats';
 import { useAppSelector } from '~/hooks/useAppHooks';
 
-export default function TetrisNextBlock() {
-  const isClient = useIsClient();
-  const { nextShape, pieceStats } = useAppSelector((state) => state.tetris);
+export function HydrateFallback() {
+  return <div>Hydration Skeleton</div>;
+}
 
-  // Stop SSR since the input is random.
-  if (!isClient) return null;
+export default function TetrisNextBlock() {
+  const { nextShape, pieceStats } = useAppSelector((state) => state.tetris);
 
   const box = shapes[nextShape][0];
 
@@ -17,6 +17,7 @@ export default function TetrisNextBlock() {
     return rowArray.map((square, col) => {
       return (
         <TetrisBlock
+          // eslint-disable-next-line @eslint-react/no-array-index-key
           key={`${row}${col}`}
           color={square === 0 ? 0 : nextShape}
         />

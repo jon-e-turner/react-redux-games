@@ -15,13 +15,7 @@ export const gridDefault = (rows: number = 18, cols: number = 10) => {
   );
 };
 
-export const canMoveTo = (
-  shape: number,
-  grid: number[][],
-  x: number,
-  y: number,
-  rotation: number,
-) => {
+export const canMoveTo = (shape: number, grid: number[][], x: number, y: number, rotation: number) => {
   const currentShape = shapes[shape][rotation];
   const gridWidth = grid[0].length - 1;
   const gridHeight = grid.length - 1;
@@ -53,13 +47,7 @@ export const canMoveTo = (
   return true;
 };
 
-export const addBlockToGrid = (
-  shape: number,
-  rotation: number,
-  grid: number[][],
-  x: number,
-  y: number,
-) => {
+export const addBlockToGrid = (shape: number, rotation: number, grid: number[][], x: number, y: number) => {
   let blockOffGrid = false;
   const block = shapes[shape][rotation];
   const newGrid = [...grid];

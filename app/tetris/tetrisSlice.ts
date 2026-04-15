@@ -1,11 +1,5 @@
-import { createSlice } from '@reduxjs/toolkit';
-import {
-  addBlockToGrid,
-  canMoveTo,
-  checkRows,
-  defaultState,
-  nextRotation,
-} from '~/utils';
+import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
+import { addBlockToGrid, canMoveTo, checkRows, defaultState, nextRotation } from '~/utils';
 import pieceBag from '~/utils/randomBag';
 import { gameSaved } from './tetrisHistorySlice';
 
@@ -38,13 +32,7 @@ const tetrisSlice = createSlice({
         state.y = y + 1;
         state.shouldSave = false;
       } else {
-        const { newGrid, blockOffGrid } = addBlockToGrid(
-          shape,
-          rotation,
-          grid,
-          x,
-          y,
-        );
+        const { newGrid, blockOffGrid } = addBlockToGrid(shape, rotation, grid, x, y);
 
         state.shouldSave = true;
         state.grid = newGrid;
@@ -64,8 +52,7 @@ const tetrisSlice = createSlice({
           state.x = 4;
           state.y = -4;
           state.rotation = 0;
-          state.level =
-            newScore > 0 && newScore % 500 === 0 ? level + 1 : level;
+          state.level = newScore > 0 && newScore % 500 === 0 ? level + 1 : level;
 
           if (!canMoveTo(newNextShape, newGrid, 4, 0, 0)) {
             state.shape = 0;
@@ -87,6 +74,14 @@ const tetrisSlice = createSlice({
 
       if (canMoveTo(shape, grid, x + 1, y, rotation)) {
         state.x = x + 1;
+      }
+    },
+    rotated: (state, actions: PayloadAction<boolean>) => {
+      const { shape, rotation, grid, x, y } = state;
+      const newRotation = nextRotation(shape, rotation, actions.payload);
+
+      if (canMoveTo(shape, grid, x, y, newRotation)) {
+        state.rotation = newRotation;
       }
     },
     rotatedRight: (state) => {
@@ -133,14 +128,7 @@ const tetrisSlice = createSlice({
   },
 });
 
-export const {
-  movedDown,
-  movedLeft,
-  movedRight,
-  rotatedRight,
-  rotatedLeft,
-  paused,
-  gameEnded,
-} = tetrisSlice.actions;
+export const { movedDown, movedLeft, movedRight, rotated, rotatedRight, rotatedLeft, paused, gameEnded } =
+  tetrisSlice.actions;
 
 export default tetrisSlice.reducer;

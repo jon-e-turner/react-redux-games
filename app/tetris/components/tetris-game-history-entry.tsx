@@ -19,27 +19,36 @@ export default function TetrisGameHistoryEntry({
           {gameRecord.grid.map((rowArray, row) => {
             return rowArray.map((square, col) => {
               const k = row * gameRecord.grid[0].length + col;
-              return <TetrisBlock key={k} color={square} />;
+              return (
+                <TetrisBlock
+                  key={k}
+                  color={square}
+                />
+              );
             });
           })}
         </div>
-        <div className="flex flex-auto flex-col justify-between content-stretch pl-4">
+        <div className="flex flex-auto flex-col content-stretch justify-between pl-4">
           <button
             type="button"
             aria-label="collapse details"
-            className="nav-button self-end mb-auto"
+            className="nav-button mb-auto self-end"
             onClick={handleCollapseClick}
           >
-            <div className="material-symbols-rounded pb-1 flex-1 pr-2">
-              collapse_content
-            </div>
+            <div className="material-symbols-rounded flex-1 pr-2 pb-1">collapse_content</div>
           </button>
           <label htmlFor="score">Score: </label>
-          <div id="score" className="">
+          <div
+            id="score"
+            className=""
+          >
             {gameRecord.score}
           </div>
           <label htmlFor="level">Level: </label>
-          <div id="level" className="">
+          <div
+            id="level"
+            className=""
+          >
             {gameRecord.level}
           </div>
         </div>
@@ -48,19 +57,17 @@ export default function TetrisGameHistoryEntry({
   } else {
     return (
       <div className="tetris-history-entry items-center">
-        <div className="text-left flex-1">Score:</div>
-        <div className="text-right flex-3 pr-4">{gameRecord.score}</div>
-        <div className="text-left flex-1">Level:</div>
-        <div className="text-right flex-1 pr-2">{gameRecord.level}</div>
+        <div className="flex-1 text-left">Score:</div>
+        <div className="flex-3 pr-4 text-right">{gameRecord.score}</div>
+        <div className="flex-1 text-left">Level:</div>
+        <div className="flex-1 pr-2 text-right">{gameRecord.level}</div>
         <button
           type="button"
           aria-label="expand details"
           className="nav-button"
           onClick={handleExpandClick}
         >
-          <div className="material-symbols-rounded flex-1 pr-2">
-            expand_content
-          </div>
+          <div className="material-symbols-rounded flex-1 pr-2">expand_content</div>
         </button>
       </div>
     );

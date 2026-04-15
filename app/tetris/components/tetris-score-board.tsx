@@ -6,9 +6,7 @@ import { useAppSelector } from '~/hooks/useAppHooks';
 
 export default function TetrisScoreBoard() {
   const dispatch = useDispatch();
-  const { score, isRunning, level, gameOver, grid } = useAppSelector(
-    (state) => state.tetris,
-  );
+  const { score, isRunning, level, gameOver, grid } = useAppSelector((state) => state.tetris);
 
   const saveAndRestart = () => {
     dispatch(
@@ -60,11 +58,17 @@ export default function TetrisScoreBoard() {
         }}
       >
         {isRunning ? (
-          <span aria-label="pause game" className="material-symbols-rounded">
+          <span
+            aria-label="pause game"
+            className="material-symbols-rounded"
+          >
             pause
           </span>
         ) : (
-          <span aria-label="resume game" className="material-symbols-rounded">
+          <span
+            aria-label="resume game"
+            className="material-symbols-rounded"
+          >
             play_arrow
           </span>
         )}
@@ -76,7 +80,10 @@ export default function TetrisScoreBoard() {
           saveAndRestart();
         }}
       >
-        <span aria-label="new game" className="material-symbols-rounded">
+        <span
+          aria-label="new game"
+          className="material-symbols-rounded"
+        >
           add_2
         </span>
       </button>

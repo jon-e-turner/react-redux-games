@@ -49,7 +49,7 @@ Initially, this came from <https://makeschool.org/mediabook/oa/tutorials/react-r
   - Player can hold a single piece for later
   - Piece locking with 15-move reset timer
   - Soft vs hard drop
-    - Soft -> ~20 * level speed, non-locking
+    - Soft -> ~20 \* level speed, non-locking
     - Hard -> straight to bottom, locking
       - Should provide a score bonus based on rows dropped
 - Figure out bug that leads to early game over

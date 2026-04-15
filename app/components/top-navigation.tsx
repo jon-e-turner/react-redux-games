@@ -2,19 +2,14 @@ import { useState } from 'react';
 import { Link } from 'react-router';
 import TetrisGameHistory from '~/tetris/components/tetris-game-history';
 import { useAppSelector } from '~/hooks/useAppHooks';
-import {
-  selectOrderedGameHistoryByPlayer,
-  selectOrderedHighScores,
-} from '~/tetris/tetrisHistorySlice';
+import { selectOrderedGameHistoryByPlayer, selectOrderedHighScores } from '~/tetris/tetrisHistorySlice';
 
 export default function TopNavigation() {
   const player = 'me';
   const [isHighScoreVisible, setIsHighScoreVisible] = useState(false);
   const [isGameHistoryVisible, setIsGameHistoryVisible] = useState(false);
 
-  const history = useAppSelector((state) =>
-    selectOrderedGameHistoryByPlayer(state, player),
-  );
+  const history = useAppSelector((state) => selectOrderedGameHistoryByPlayer(state, player));
   const highScores = useAppSelector((state) => selectOrderedHighScores(state));
 
   return (
@@ -24,7 +19,10 @@ export default function TopNavigation() {
           type="button"
           className="navigate-back-button control-button nav-button"
         >
-          <span aria-label="navigate back" className="material-symbols-rounded">
+          <span
+            aria-label="navigate back"
+            className="material-symbols-rounded"
+          >
             home
           </span>
         </button>
@@ -52,7 +50,10 @@ export default function TopNavigation() {
           setIsGameHistoryVisible(false);
         }}
       >
-        <span aria-label="show top scores" className="material-symbols-rounded">
+        <span
+          aria-label="show top scores"
+          className="material-symbols-rounded"
+        >
           social_leaderboard
         </span>
       </button>
