@@ -5,11 +5,14 @@ import TetrisNextBlock from '~/tetris/components/tetris-next-block';
 import TetrisScoreBoard from '~/tetris/components/tetris-score-board';
 import TopNavigation from '~/components/top-navigation';
 import '~/tetris/tetris.css';
+import TetrisNavigation from '~/tetris/components/tetris-navigation';
 
 export default function Tetris() {
   return (
     <>
-      <TopNavigation />
+      <TopNavigation>
+        <TetrisNavigation />
+      </TopNavigation>
       <div className="app">
         <header className="app-header">
           <h1 className="app-title">Tetris Redux</h1>
