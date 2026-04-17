@@ -84,22 +84,6 @@ const tetrisSlice = createSlice({
         state.rotation = newRotation;
       }
     },
-    rotatedRight: (state) => {
-      const { shape, rotation, grid, x, y } = state;
-      const newRotation = nextRotation(shape, rotation, false);
-
-      if (canMoveTo(shape, grid, x, y, newRotation)) {
-        state.rotation = newRotation;
-      }
-    },
-    rotatedLeft: (state) => {
-      const { shape, rotation, grid, x, y } = state;
-      const newRotation = nextRotation(shape, rotation, true);
-
-      if (canMoveTo(shape, grid, x, y, newRotation)) {
-        state.rotation = newRotation;
-      }
-    },
     paused: (state) => {
       const { gameOver, isRunning } = state;
 
@@ -128,7 +112,6 @@ const tetrisSlice = createSlice({
   },
 });
 
-export const { movedDown, movedLeft, movedRight, rotated, rotatedRight, rotatedLeft, paused, gameEnded } =
-  tetrisSlice.actions;
+export const { movedDown, movedLeft, movedRight, rotated, paused, gameEnded } = tetrisSlice.actions;
 
 export default tetrisSlice.reducer;
