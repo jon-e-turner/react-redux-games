@@ -5,6 +5,8 @@ Initially, this came from <https://makeschool.org/mediabook/oa/tutorials/react-r
 ## In-progress
 
 - Check high scores and update
+  - Quickly getting complex to do correctly.
+  - I **think** the right path forward is to use middleware to handle game end and game start activities.
 - Add historical stats
 
 ## My Changes
@@ -60,6 +62,7 @@ Initially, this came from <https://makeschool.org/mediabook/oa/tutorials/react-r
 - Break up CSS and learn about Tailwind
 - Implement themes
 - Encapsulate/isolate the Tetris clone
+- Normalize data model
 - Implement as an SPA
   - Prefer 800x600 or 1280x960
 - I18n

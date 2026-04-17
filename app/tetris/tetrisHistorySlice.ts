@@ -14,6 +14,7 @@ export type TetrisGameHistoryState = {
   gameHistory: {
     [key: string]: TetrisGameRecord[];
   };
+  // Need to revisit this; it duplicates the state of these 10 games.
   highScores: TetrisGameRecord[];
   shouldSave: boolean;
 };
@@ -31,7 +32,7 @@ const tetrisHistorySlice = createSlice({
     gameSaved: (state, action: PayloadAction<TetrisGameRecord>) => {
       const gameRecord: TetrisGameRecord = action.payload;
       const player = gameRecord.player;
-      // const highScores = selectHighScores({ tetrisHistory: { ...state } });
+      const highScores = state.highScores.slice();
 
       if (!state.gameHistory[player]) {
         state.gameHistory[player] = [];
@@ -41,11 +42,13 @@ const tetrisHistorySlice = createSlice({
         state.gameHistory[player].shift();
       }
 
-      // if (highScores.push({ game: gameRecord }) > 10) {
-      //   highScores.sort((a, b) => a.game.score - b.game.score).pop();
-      // }
+      if (highScores.push(gameRecord) > 10) {
+        highScores.sort((a, b) => b.score - a.score);
+      }
 
-      // state.highScores = { ...highScores };
+      // [CODE SMELL] This will always return a new array, forcing the high score
+      // component to reload every time a game is started.
+      state.highScores = highScores.slice(0, 10);
       state.shouldSave = true;
     },
   },
@@ -66,7 +69,7 @@ export const selectOrderedGameHistoryByPlayer = createSelector([selectGameHistor
 });
 
 export const selectOrderedHighScores = createSelector([selectHighScores], (scores) => {
-  return scores.slice().sort((a, b) => a.score - b.score);
+  return scores.slice().sort((a, b) => b.score - a.score);
 });
 
 export const { gameSaved } = tetrisHistorySlice.actions;
