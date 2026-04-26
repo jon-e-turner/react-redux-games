@@ -32,9 +32,10 @@ export class RandomBag {
     return this.#instance;
   }
 
-  public static createInstance(copies: number) {
+  private static createInstance(copies: number) {
     if (RandomBag.#instance) {
       console.warn(`Game bag already exists. \nCall getInstance() to retrieve it.`);
+      return;
     }
 
     this.#instance = new RandomBag(copies);
