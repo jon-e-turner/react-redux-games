@@ -33,19 +33,12 @@ export class RandomBag {
   }
 
   private static createInstance(copies: number) {
-    if (RandomBag.#instance) {
-      console.warn(`Game bag already exists. \nCall getInstance() to retrieve it.`);
-      return;
-    }
-
     this.#instance = new RandomBag(copies);
   }
 
   public resetInstance() {
-    if (RandomBag.#instance) {
-      this.#bag = [];
-      this.#refillBag();
-    }
+    this.#bag = [];
+    this.#refillBag();
   }
 
   /**

@@ -1,11 +1,22 @@
-import { reactRouter } from '@react-router/dev/vite';
+/* eslint-disable @typescript-eslint/triple-slash-reference */
+/// <reference types="vitest/config" />
+
+import * as vite from '@react-router/dev/vite';
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'vite';
 import devtoolsJson from 'vite-plugin-devtools-json';
+import { configDefaults } from 'vitest/config';
 
 export default defineConfig({
   resolve: {
     tsconfigPaths: true,
   },
-  plugins: [tailwindcss(), reactRouter(), devtoolsJson()],
+  plugins: [tailwindcss(), vite.reactRouter(), devtoolsJson()],
+  test: {
+    exclude: [...configDefaults.exclude, '.react-router/**', 'build/**', 'coverage/**'],
+    coverage: {
+      include: ['app/**/*.{ts,tsx}'],
+      thresholds: { autoUpdate: true },
+    },
+  },
 });
