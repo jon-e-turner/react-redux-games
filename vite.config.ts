@@ -6,6 +6,7 @@ import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'vite';
 import devtoolsJson from 'vite-plugin-devtools-json';
 import { configDefaults } from 'vitest/config';
+import { playwright } from '@vitest/browser-playwright';
 
 export default defineConfig({
   resolve: {
@@ -18,5 +19,31 @@ export default defineConfig({
       include: ['app/**/*.{ts,tsx}'],
       thresholds: { autoUpdate: true },
     },
+    projects: [
+      {
+        test: {
+          include: ['**/*.test.ts'],
+          name: 'unit',
+        },
+        resolve: {
+          tsconfigPaths: true,
+        },
+      },
+      {
+        test: {
+          include: ['**/*.test.tsx'],
+          name: 'browser',
+          browser: {
+            enabled: true,
+            provider: playwright(),
+            headless: true,
+            instances: [{ browser: 'chromium' }],
+          },
+        },
+        resolve: {
+          tsconfigPaths: true,
+        },
+      },
+    ],
   },
 });

@@ -5,12 +5,13 @@ export default function MessagePopup() {
 
   const showPopup = gameOver || !isRunning;
 
-  const classes = `message-popup ${showPopup ? '' : 'hidden'}`;
-
   const popupTitle = gameOver ? 'Game Over!' : 'Paused';
 
   return (
-    <div className={classes}>
+    <div
+      className="message-popup"
+      style={{ visibility: showPopup ? 'visible' : 'hidden' }}
+    >
       <div className="message-text">{popupTitle}</div>
     </div>
   );

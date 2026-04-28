@@ -8,3 +8,5 @@
 
 # Test Coverage
 /coverage/
+/.vitest-attachments/
+/__tests__/**/*.png
