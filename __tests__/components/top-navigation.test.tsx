@@ -2,8 +2,6 @@ import { describe, it, expect } from 'vitest';
 import { renderWithProviders } from '../test-utils';
 import TopNavigation from '~/components/top-navigation';
 import { BrowserRouter } from 'react-router';
-// import { defaultState } from '~/utils';
-// import configureAppStore from '~/store';
 
 describe('TopNavigation', async () => {
   it('renders a back button', async () => {
