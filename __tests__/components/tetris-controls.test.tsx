@@ -88,7 +88,7 @@ describe('TetrisControls', async () => {
         expect(newState.tetris.x).toBe(5);
       });
 
-      it('rotates the piece right on d', async () => {
+      it('moves the piece right on d', async () => {
         const { store } = await renderWithProviders(<TetrisControls />, { store: testStore });
 
         await userEvent.keyboard('D');
@@ -98,7 +98,7 @@ describe('TetrisControls', async () => {
         expect(newState.tetris.x).toBe(5);
       });
 
-      it('rotates the piece right on shift + d', async () => {
+      it('moves the piece right on shift + d', async () => {
         const { store } = await renderWithProviders(<TetrisControls />, { store: testStore });
 
         await userEvent.keyboard('{Shift>}D{/Shift}');
