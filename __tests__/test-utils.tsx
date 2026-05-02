@@ -21,10 +21,10 @@ export async function renderWithProviders(ui: React.ReactElement, extendedRender
   } = extendedRenderOptions;
 
   const Wrapper = ({ children }: PropsWithChildren) => <Provider store={store}>{children}</Provider>;
+  const screen = await render(ui, { wrapper: Wrapper, ...renderOptions });
 
-  // Return an object with the store, user, and all of RTL's query functions
   return {
     store,
-    ...(await render(ui, { wrapper: Wrapper, ...renderOptions })),
+    screen,
   };
 }
