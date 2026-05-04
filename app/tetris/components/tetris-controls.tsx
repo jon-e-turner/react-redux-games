@@ -57,9 +57,7 @@ export default function TetrisControls() {
         className="control-button control-button-a"
         disabled={!shouldDispatch}
         onClick={() => {
-          if (shouldDispatch) {
-            dispatch(movedLeft());
-          }
+          dispatch(movedLeft());
         }}
       >
         <span className="material-symbols-rounded">arrow_back</span>
@@ -72,9 +70,7 @@ export default function TetrisControls() {
         className="control-button control-button-d move-right"
         disabled={!shouldDispatch}
         onClick={() => {
-          if (shouldDispatch) {
-            dispatch(movedRight());
-          }
+          dispatch(movedRight());
         }}
       >
         <span className="material-symbols-rounded">arrow_forward</span>
@@ -87,9 +83,7 @@ export default function TetrisControls() {
         className="control-button control-button-w-left rotate-block"
         disabled={!shouldDispatch}
         onClick={() => {
-          if (shouldDispatch) {
-            dispatch(rotated(true));
-          }
+          dispatch(rotated(true));
         }}
       >
         <span className="material-symbols-rounded">rotate_left</span>
@@ -102,9 +96,7 @@ export default function TetrisControls() {
         className="control-button control-button-w rotate-block"
         disabled={!shouldDispatch}
         onClick={() => {
-          if (shouldDispatch) {
-            dispatch(rotated(false));
-          }
+          dispatch(rotated(false));
         }}
       >
         <span className="material-symbols-rounded">rotate_right</span>
@@ -117,9 +109,7 @@ export default function TetrisControls() {
         className="control-button control-button-s move-down"
         disabled={!shouldDispatch}
         onClick={() => {
-          if (shouldDispatch) {
-            dispatch(movedDown());
-          }
+          dispatch(movedDown());
         }}
       >
         <span className="material-symbols-rounded">arrow_downward</span>
