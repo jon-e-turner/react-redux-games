@@ -1,0 +1,5 @@
+#! /usr/bin/sh
+
+pnpm exec lint-staged
+
+pnpm exec vitest run

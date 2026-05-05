@@ -9,12 +9,13 @@
   "scripts": {
     "build": "react-router build",
     "dev": "react-router dev",
-    "format": "prettier -c .",
     "format:fix": "prettier -w .",
+    "format": "prettier -c .",
     "lint": "eslint .",
+    "prepare": "husky",
     "start": "react-router-serve ./build/server/index.js",
-    "test": "vitest run --coverage",
     "test:watch": "vitest",
+    "test": "vitest run --coverage",
     "typecheck": "react-router typegen && tsc"
   },
   "dependencies": {
@@ -43,6 +44,8 @@
     "eslint": "^10.2.0",
     "eslint-config-prettier": "^10.1.8",
     "globals": "^17.5.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.4.0",
     "prettier": "^3.8.2",
     "prettier-plugin-tailwindcss": "^0.7.2",
     "tailwindcss": "^4.2.2",
@@ -52,5 +55,15 @@
     "vite-plugin-devtools-json": "^1.0.0",
     "vitest": "^4.1.5",
     "vitest-browser-react": "^2.2.0"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write",
+      "pnpm run test"
+    ],
+    "!(*.ts|*.tsx)": [
+      "prettier --ignore-unknown --write"
+    ]
   }
 }
