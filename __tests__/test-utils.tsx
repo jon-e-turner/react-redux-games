@@ -12,7 +12,12 @@ interface ExtendedRenderOptions extends Omit<RenderOptions, 'queries' | 'wrapper
   store?: EnhancedStore;
 }
 
-export async function renderWithProviders(ui: React.ReactElement, extendedRenderOptions: ExtendedRenderOptions = {}) {
+// export async function renderWithAllProviders(
+//   ui: React.ReactElement,
+//   extendedRenderOptions: ExtendedRenderOptions = {},
+// ) {}
+
+export async function renderWithReduxStore(ui: React.ReactElement, extendedRenderOptions: ExtendedRenderOptions = {}) {
   const {
     preloadedState = defaultState(),
     // Automatically create a store instance if no store was passed in

@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach } from 'vitest';
-import { renderWithProviders } from '../test-utils';
+import { renderWithReduxStore } from '../test-utils';
 import TetrisControls from '~/tetris/components/tetris-controls';
 import configureAppStore, { type AppState } from '~/store';
 import { defaultState } from '~/utils';
@@ -27,7 +27,7 @@ describe('TetrisControls', async () => {
   });
 
   it('renders all five buttons', async () => {
-    const { screen } = await renderWithProviders(<TetrisControls />);
+    const { screen } = await renderWithReduxStore(<TetrisControls />);
 
     expect(screen.getByLabelText('move left')).toBeInTheDocument();
     expect(screen.getByLabelText('move right')).toBeInTheDocument();
@@ -39,7 +39,7 @@ describe('TetrisControls', async () => {
   describe('button clicks', async () => {
     describe('rotate left', async () => {
       it('rotates the piece counter-clockwise', async () => {
-        const { store, screen } = await renderWithProviders(<TetrisControls />, { store: testStore });
+        const { store, screen } = await renderWithReduxStore(<TetrisControls />, { store: testStore });
 
         await screen.getByLabelText('rotate counterclockwise', { exact: true }).click();
         const newState: AppState = store.getState();
@@ -51,7 +51,7 @@ describe('TetrisControls', async () => {
       });
 
       it('is disabled if the game is paused', async () => {
-        const { store, screen } = await renderWithProviders(<TetrisControls />, { store: testStore });
+        const { store, screen } = await renderWithReduxStore(<TetrisControls />, { store: testStore });
 
         store.dispatch(paused());
         await screen.getByLabelText('rotate counterclockwise', { exact: true }).click({ force: true });
@@ -64,7 +64,7 @@ describe('TetrisControls', async () => {
       });
 
       it('is disabled if the game is over', async () => {
-        const { store, screen } = await renderWithProviders(<TetrisControls />, { store: testStore });
+        const { store, screen } = await renderWithReduxStore(<TetrisControls />, { store: testStore });
 
         store.dispatch(gameEnded());
         await screen.getByLabelText('rotate counterclockwise', { exact: true }).click({ force: true });
@@ -79,7 +79,7 @@ describe('TetrisControls', async () => {
 
     describe('rotate right', async () => {
       it('rotates the piece clockwise', async () => {
-        const { store, screen } = await renderWithProviders(<TetrisControls />, { store: testStore });
+        const { store, screen } = await renderWithReduxStore(<TetrisControls />, { store: testStore });
 
         await screen.getByLabelText('rotate clockwise', { exact: true }).click();
         const newState: AppState = store.getState();
@@ -91,7 +91,7 @@ describe('TetrisControls', async () => {
       });
 
       it('is disabled if the game is paused', async () => {
-        const { store, screen } = await renderWithProviders(<TetrisControls />, { store: testStore });
+        const { store, screen } = await renderWithReduxStore(<TetrisControls />, { store: testStore });
 
         store.dispatch(paused());
         await screen.getByLabelText('rotate clockwise', { exact: true }).click({ force: true });
@@ -104,7 +104,7 @@ describe('TetrisControls', async () => {
       });
 
       it('is disabled if the game is over', async () => {
-        const { store, screen } = await renderWithProviders(<TetrisControls />, { store: testStore });
+        const { store, screen } = await renderWithReduxStore(<TetrisControls />, { store: testStore });
 
         store.dispatch(gameEnded());
         await screen.getByLabelText('rotate clockwise', { exact: true }).click({ force: true });
@@ -119,7 +119,7 @@ describe('TetrisControls', async () => {
 
     describe('left arrow', async () => {
       it('moves the piece left', async () => {
-        const { store, screen } = await renderWithProviders(<TetrisControls />, { store: testStore });
+        const { store, screen } = await renderWithReduxStore(<TetrisControls />, { store: testStore });
 
         await screen.getByLabelText('move left', { exact: true }).click();
         const newState: AppState = store.getState();
@@ -131,7 +131,7 @@ describe('TetrisControls', async () => {
       });
 
       it('is disabled if the game is paused', async () => {
-        const { store, screen } = await renderWithProviders(<TetrisControls />, { store: testStore });
+        const { store, screen } = await renderWithReduxStore(<TetrisControls />, { store: testStore });
 
         store.dispatch(paused());
         await screen.getByLabelText('move left', { exact: true }).click({ force: true });
@@ -144,7 +144,7 @@ describe('TetrisControls', async () => {
       });
 
       it('is disabled if the game is over', async () => {
-        const { store, screen } = await renderWithProviders(<TetrisControls />, { store: testStore });
+        const { store, screen } = await renderWithReduxStore(<TetrisControls />, { store: testStore });
 
         store.dispatch(gameEnded());
         await screen.getByLabelText('move left', { exact: true }).click({ force: true });
@@ -159,7 +159,7 @@ describe('TetrisControls', async () => {
 
     describe('right arrow', async () => {
       it('moves the piece right', async () => {
-        const { store, screen } = await renderWithProviders(<TetrisControls />, { store: testStore });
+        const { store, screen } = await renderWithReduxStore(<TetrisControls />, { store: testStore });
 
         await screen.getByLabelText('move right', { exact: true }).click();
         const newState: AppState = store.getState();
@@ -171,7 +171,7 @@ describe('TetrisControls', async () => {
       });
 
       it('is disabled if the game is paused', async () => {
-        const { store, screen } = await renderWithProviders(<TetrisControls />, { store: testStore });
+        const { store, screen } = await renderWithReduxStore(<TetrisControls />, { store: testStore });
 
         store.dispatch(paused());
         await screen.getByLabelText('move right', { exact: true }).click({ force: true });
@@ -184,7 +184,7 @@ describe('TetrisControls', async () => {
       });
 
       it('is disabled if the game is over', async () => {
-        const { store, screen } = await renderWithProviders(<TetrisControls />, { store: testStore });
+        const { store, screen } = await renderWithReduxStore(<TetrisControls />, { store: testStore });
 
         store.dispatch(gameEnded());
         await screen.getByLabelText('move right', { exact: true }).click({ force: true });
@@ -199,7 +199,7 @@ describe('TetrisControls', async () => {
 
     describe('down arrow', async () => {
       it('moves the piece down', async () => {
-        const { store, screen } = await renderWithProviders(<TetrisControls />, { store: testStore });
+        const { store, screen } = await renderWithReduxStore(<TetrisControls />, { store: testStore });
 
         await screen.getByLabelText('move down', { exact: true }).click();
         const newState: AppState = store.getState();
@@ -211,7 +211,7 @@ describe('TetrisControls', async () => {
       });
 
       it('is disabled if the game is paused', async () => {
-        const { store, screen } = await renderWithProviders(<TetrisControls />, { store: testStore });
+        const { store, screen } = await renderWithReduxStore(<TetrisControls />, { store: testStore });
 
         store.dispatch(paused());
         await screen.getByLabelText('move down', { exact: true }).click({ force: true });
@@ -224,7 +224,7 @@ describe('TetrisControls', async () => {
       });
 
       it('is disabled if the game is over', async () => {
-        const { store, screen } = await renderWithProviders(<TetrisControls />, { store: testStore });
+        const { store, screen } = await renderWithReduxStore(<TetrisControls />, { store: testStore });
 
         store.dispatch(gameEnded());
         await screen.getByLabelText('move down', { exact: true }).click({ force: true });
@@ -241,7 +241,7 @@ describe('TetrisControls', async () => {
   describe('keyboard bindings', async () => {
     describe('ignored', async () => {
       it('does nothing if ALT is pressed', async () => {
-        const { store } = await renderWithProviders(<TetrisControls />, { store: testStore });
+        const { store } = await renderWithReduxStore(<TetrisControls />, { store: testStore });
 
         await userEvent.keyboard('{Alt>}{ArrowLeft}{/Alt}');
         const newState: AppState = store.getState();
@@ -253,7 +253,7 @@ describe('TetrisControls', async () => {
       });
 
       it('does nothing if Meta key is pressed', async () => {
-        const { store } = await renderWithProviders(<TetrisControls />, { store: testStore });
+        const { store } = await renderWithReduxStore(<TetrisControls />, { store: testStore });
 
         await userEvent.keyboard('{Meta>}{ArrowLeft}{/Meta}');
         const newState: AppState = store.getState();
@@ -265,7 +265,7 @@ describe('TetrisControls', async () => {
       });
 
       it('does nothing if CTRL is pressed', async () => {
-        const { store } = await renderWithProviders(<TetrisControls />, { store: testStore });
+        const { store } = await renderWithReduxStore(<TetrisControls />, { store: testStore });
 
         await userEvent.keyboard('{Control>}{ArrowLeft}{/Control}');
         const newState: AppState = store.getState();
@@ -277,7 +277,7 @@ describe('TetrisControls', async () => {
       });
 
       it('does nothing if game is paused', async () => {
-        const { store } = await renderWithProviders(<TetrisControls />, { store: testStore });
+        const { store } = await renderWithReduxStore(<TetrisControls />, { store: testStore });
 
         store.dispatch(paused());
         await userEvent.keyboard('{ArrowLeft}');
@@ -290,7 +290,7 @@ describe('TetrisControls', async () => {
       });
 
       it('does nothing if game is over', async () => {
-        const { store } = await renderWithProviders(<TetrisControls />, { store: testStore });
+        const { store } = await renderWithReduxStore(<TetrisControls />, { store: testStore });
 
         store.dispatch(gameEnded());
         await userEvent.keyboard('{ArrowLeft}');
@@ -305,7 +305,7 @@ describe('TetrisControls', async () => {
 
     describe('rotation', async () => {
       it('rotates the piece right on arrow key up', async () => {
-        const { store } = await renderWithProviders(<TetrisControls />, { store: testStore });
+        const { store } = await renderWithReduxStore(<TetrisControls />, { store: testStore });
 
         await userEvent.keyboard('{ArrowUp}');
         const newState: AppState = store.getState();
@@ -317,7 +317,7 @@ describe('TetrisControls', async () => {
       });
 
       it('rotates the piece left on shift + arrow key up', async () => {
-        const { store } = await renderWithProviders(<TetrisControls />, { store: testStore });
+        const { store } = await renderWithReduxStore(<TetrisControls />, { store: testStore });
 
         await userEvent.keyboard('{Shift>}{ArrowUp}{/Shift}');
         const newState: AppState = store.getState();
@@ -329,7 +329,7 @@ describe('TetrisControls', async () => {
       });
 
       it('rotates the piece right on `w`', async () => {
-        const { store } = await renderWithProviders(<TetrisControls />, { store: testStore });
+        const { store } = await renderWithReduxStore(<TetrisControls />, { store: testStore });
 
         await userEvent.keyboard('W');
         const newState: AppState = store.getState();
@@ -341,7 +341,7 @@ describe('TetrisControls', async () => {
       });
 
       it('rotates the piece left on shift + `w`', async () => {
-        const { store } = await renderWithProviders(<TetrisControls />, { store: testStore });
+        const { store } = await renderWithReduxStore(<TetrisControls />, { store: testStore });
 
         await userEvent.keyboard('{Shift>}W{/Shift}');
         const newState: AppState = store.getState();
@@ -355,7 +355,7 @@ describe('TetrisControls', async () => {
 
     describe('move left', async () => {
       it('moves the piece left on left arrow key', async () => {
-        const { store } = await renderWithProviders(<TetrisControls />, { store: testStore });
+        const { store } = await renderWithReduxStore(<TetrisControls />, { store: testStore });
 
         await userEvent.keyboard('{ArrowLeft}');
         const newState: AppState = store.getState();
@@ -366,7 +366,7 @@ describe('TetrisControls', async () => {
       });
 
       it('moves the piece left on shift + left arrow key', async () => {
-        const { store } = await renderWithProviders(<TetrisControls />, { store: testStore });
+        const { store } = await renderWithReduxStore(<TetrisControls />, { store: testStore });
 
         await userEvent.keyboard('{Shift>}{ArrowLeft}{/Shift}');
         const newState: AppState = store.getState();
@@ -377,7 +377,7 @@ describe('TetrisControls', async () => {
       });
 
       it('moves the piece left on a', async () => {
-        const { store } = await renderWithProviders(<TetrisControls />, { store: testStore });
+        const { store } = await renderWithReduxStore(<TetrisControls />, { store: testStore });
 
         await userEvent.keyboard('A');
         const newState: AppState = store.getState();
@@ -388,7 +388,7 @@ describe('TetrisControls', async () => {
       });
 
       it('moves the piece left on shift + a', async () => {
-        const { store } = await renderWithProviders(<TetrisControls />, { store: testStore });
+        const { store } = await renderWithReduxStore(<TetrisControls />, { store: testStore });
 
         await userEvent.keyboard('{Shift>}A{/Shift}');
         const newState: AppState = store.getState();
@@ -401,7 +401,7 @@ describe('TetrisControls', async () => {
 
     describe('move right', async () => {
       it('moves the piece right on right arrow key', async () => {
-        const { store } = await renderWithProviders(<TetrisControls />, { store: testStore });
+        const { store } = await renderWithReduxStore(<TetrisControls />, { store: testStore });
 
         await userEvent.keyboard('{ArrowRight}');
         const newState: AppState = store.getState();
@@ -412,7 +412,7 @@ describe('TetrisControls', async () => {
       });
 
       it('moves the piece right on shift + right arrow key', async () => {
-        const { store } = await renderWithProviders(<TetrisControls />, { store: testStore });
+        const { store } = await renderWithReduxStore(<TetrisControls />, { store: testStore });
 
         await userEvent.keyboard('{Shift>}{ArrowRight}{/Shift}');
         const newState: AppState = store.getState();
@@ -423,7 +423,7 @@ describe('TetrisControls', async () => {
       });
 
       it('moves the piece right on d', async () => {
-        const { store } = await renderWithProviders(<TetrisControls />, { store: testStore });
+        const { store } = await renderWithReduxStore(<TetrisControls />, { store: testStore });
 
         await userEvent.keyboard('D');
         const newState: AppState = store.getState();
@@ -434,7 +434,7 @@ describe('TetrisControls', async () => {
       });
 
       it('moves the piece right on shift + d', async () => {
-        const { store } = await renderWithProviders(<TetrisControls />, { store: testStore });
+        const { store } = await renderWithReduxStore(<TetrisControls />, { store: testStore });
 
         await userEvent.keyboard('{Shift>}D{/Shift}');
         const newState: AppState = store.getState();
@@ -447,7 +447,7 @@ describe('TetrisControls', async () => {
 
     describe('move down', async () => {
       it('moves the piece down on down arrow key', async () => {
-        const { store } = await renderWithProviders(<TetrisControls />, { store: testStore });
+        const { store } = await renderWithReduxStore(<TetrisControls />, { store: testStore });
 
         await userEvent.keyboard('{ArrowDown}');
         const newState: AppState = store.getState();
@@ -458,7 +458,7 @@ describe('TetrisControls', async () => {
       });
 
       it('moves the piece down on shift + down arrow key', async () => {
-        const { store } = await renderWithProviders(<TetrisControls />, { store: testStore });
+        const { store } = await renderWithReduxStore(<TetrisControls />, { store: testStore });
 
         await userEvent.keyboard('{Shift>}{ArrowDown}{/Shift}');
         const newState: AppState = store.getState();
@@ -469,7 +469,7 @@ describe('TetrisControls', async () => {
       });
 
       it('moves the piece down on s', async () => {
-        const { store } = await renderWithProviders(<TetrisControls />, { store: testStore });
+        const { store } = await renderWithReduxStore(<TetrisControls />, { store: testStore });
 
         await userEvent.keyboard('S');
         const newState: AppState = store.getState();
@@ -480,7 +480,7 @@ describe('TetrisControls', async () => {
       });
 
       it('moves the piece down on shift + s', async () => {
-        const { store } = await renderWithProviders(<TetrisControls />, { store: testStore });
+        const { store } = await renderWithReduxStore(<TetrisControls />, { store: testStore });
 
         await userEvent.keyboard('{Shift>}S{/Shift}');
         const newState: AppState = store.getState();
